@@ -1,152 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>JS Quiz</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f0f0f0;
-            padding: 20px;
-            text-align: center;
-        }
-        .box {
-            background: white;
-            border: 2px solid black;
-            border-radius: 8px;
-            padding: 20px;
-            width: 400px;
-            margin: auto;
-        }
-        h1 {
-            font-size: 22px;
-        }
-        .option {
-            border: 1px solid gray;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .option:hover {
-            background: #eee;
-        }
-        .selected {
-            background: lightgreen;
-        }
-        button {
-            margin-top: 15px;
-            padding: 8px 15px;
-        }
-        #result {
-            display: none;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="box">
-    <h1>JavaScript Quiz</h1>
-    <p id="qnum">Question 1</p>
-    <h3 id="qtext">Question text</h3>
-    <div id="answers"></div>
-    <button id="nextBtn" onclick="nextQ()" disabled>Next</button>
-</div>
-
-<div class="box" id="result">
-    <h2>Quiz Done!</h2>
-    <p id="score"></p>
-    <button onclick="startAgain()">Try Again</button>
-</div>
-
-<script>
-    var questions = [
-        {
-            question: "Which symbol is used for comments in JS?",
-            answers: ["//", "/* */", "#", "--"],
-            correct: 0
-        },
-        {
-            question: "Which keyword is used to declare a variable?",
-            answers: ["int", "var", "let", "both var and let"],
-            correct: 3
-        },
-        {
-            question: "What is the output of: typeof(5)?",
-            answers: ["number", "string", "boolean", "undefined"],
-            correct: 0
-        },
-        {
-            question: "Which operator is used to compare value AND type?",
-            answers: ["==", "===", "!=", "="],
-            correct: 1
-        },
-        {
-            question: "What does NaN mean?",
-            answers: ["Not a Null", "Not a Number", "New and Null", "None above"],
-            correct: 1
-        }
-    ];
-
-    var qIndex = 0;
-    var score = 0;
-    var selected = -1;
-
-    function loadQ() {
-        var q = questions[qIndex];
-        document.getElementById("qnum").innerText = "Question " + (qIndex+1);
-        document.getElementById("qtext").innerText = q.question;
-
-        var ansDiv = document.getElementById("answers");
-        ansDiv.innerHTML = "";
-        for (let i=0;i<q.answers.length;i++) {
-            let opt = document.createElement("div");
-            opt.className = "option";
-            opt.innerText = q.answers[i];
-            opt.onclick = function() { choose(i); };
-            ansDiv.appendChild(opt);
-        }
-        selected = -1;
-        document.getElementById("nextBtn").disabled = true;
-    }
-
-    function choose(i) {
-        var opts = document.getElementsByClassName("option");
-        for (let j=0;j<opts.length;j++) {
-            opts[j].classList.remove("selected");
-        }
-        opts[i].classList.add("selected");
-        selected = i;
-        document.getElementById("nextBtn").disabled = false;
-    }
-
-    function nextQ() {
-        if (selected === questions[qIndex].correct) {
-            score++;
-        }
-        qIndex++;
-        if (qIndex < questions.length) {
-            loadQ();
-        } else {
-            showResult();
-        }
-    }
-
-    function showResult() {
-        document.querySelector(".box").style.display = "none";
-        document.getElementById("result").style.display = "block";
-        document.getElementById("score").innerText = "You got " + score + " out of " + questions.length;
-    }
-
-    function startAgain() {
-        qIndex = 0;
-        score = 0;
-        document.querySelector(".box").style.display = "block";
-        document.getElementById("result").style.display = "none";
-        loadQ();
-    }
-
-    loadQ();
-</script>
-
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo">Admin Panel</div>
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle">Toggle Theme</button>
+            </div>
+        </header>
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="#"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1>Dashboard Overview</h1>
+            <div class="card-container">
+                <div class="card">
+                    <h2>Sales</h2>
+                    <div class="chart-placeholder" id="sales-chart"></div>
+                </div>
+                <div class="card">
+                    <h2>Revenue</h2>
+                    <div class="chart-placeholder" id="revenue-chart"></div>
+                </div>
+                <div class="card">
+                    <h2>Users</h2>
+                    <div class="chart-placeholder" id="users-chart"></div>
+                </div>
+                <div class="card">
+                    <h2>Traffic</h2>
+                    <div class="chart-placeholder" id="traffic-chart"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
