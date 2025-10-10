@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SVG Drawing Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="toolbar" role="toolbar" aria-label="Drawing controls">
+    <label for="color">Color</label>
+    <input id="color" type="color" value="#ff0000" title="Choose fill color">
+    <button id="undo" title="Undo last shape">Undo</button>
+    <button id="clear" title="Clear all shapes">Clear</button>
+    <button id="save" title="Download SVG file">Download SVG</button>
+    <span class="hint">Hold mouse and drag to draw circles. Press Ctrl/Cmd+Z to undo.</span>
+  </div>
+
+  <div class="canvas-wrap">
+    <!-- SVG drawing area -->
+    <svg id="svgCanvas" class="canvas" xmlns="http://www.w3.org/2000/svg" tabindex="0" aria-label="SVG drawing canvas"></svg>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+:root{
+  --toolbar-height:48px;
+}
+*{box-sizing:border-box;}
+body{
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin:0; height:100vh; display:flex; flex-direction:column;
+  color:#111827;
+}
+.toolbar{
+  height:var(--toolbar-height); display:flex; gap:8px; align-items:center;
+  padding:8px 12px; background:#f3f4f6; border-bottom:1px solid #e6e6e6;
+}
+.toolbar input[type=color]{width:40px; height:32px; padding:0; border-radius:4px; border:1px solid #ddd;}
+.toolbar button{padding:6px 10px; border-radius:6px; border:1px solid #d1d5db; background:white; cursor:pointer;}
+.toolbar .hint{margin-left:12px; color:#6b7280; font-size:13px;}
+.canvas-wrap{flex:1; display:flex; padding:12px; background:linear-gradient(180deg,#ffffff,#fbfbfb);}
+.canvas{
+  width:100%; height:100%; border:1px solid #e5e7eb; border-radius:6px; display:block;
+  cursor:crosshair;
+  background: repeating-linear-gradient(45deg,#fff 0 10px,#fbfbfb 10px 20px);
+}
+/* Make the SVG take full height minus toolbar */
+html,body{height:100%;}
